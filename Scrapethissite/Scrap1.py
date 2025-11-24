@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import csv
+# import csv
 
 # Request halaman web
 response = requests.get("https://www.scrapethissite.com/pages/simple/")
@@ -26,14 +26,16 @@ for block in county_blocks:
         "capital": capital_name,
         "population": population_name
     })
+for item in result:
+    print(f"Country: {item['name']}, Capital: {item['capital']}, Population: {item['population']}")
 
-# Simpan ke CSV
-with open("countries.csv", "w", encoding="utf-8", newline='') as csv_file:
-    fieldnames = ["name", "capital", "population"]
-    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+# # Simpan ke CSV
+# with open("countries.csv", "w", encoding="utf-8", newline='') as csv_file:
+#     fieldnames = ["name", "capital", "population"]
+#     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-    writer.writeheader()
-    for item in result:
-        writer.writerow(item)
+#     writer.writeheader()
+#     for item in result:
+#         writer.writerow(item)
 
-print("Scraping selesai. File countries.csv sudah dibuat.")
+# print("Scraping selesai. File countries.csv sudah dibuat.")
